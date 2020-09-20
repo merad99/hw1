@@ -22,7 +22,7 @@ for state in root.iter('state'):
         if ChildState.tag == 'initial':
             q0 = state.get('id')
         elif ChildState.tag == 'final':
-            accept_state.add(state.get('id'))
+            accept_state.add(int(state.get('id')))
 
 for transition in root.iter('transition'):
     for ChildFrom in transition.iter('from'):
@@ -51,7 +51,7 @@ def printAll(set, k):
 def printAllRec(set, prefix, n, k):
     # Base case: k is 0,
     if (k == 0):
-        if accepts(dfa,int(q0),{0},prefix) == True:
+        if accepts(dfa, int(q0), accept_state, prefix) == True:
             print(prefix)
         return
 
@@ -66,4 +66,3 @@ def printAllRec(set, prefix, n, k):
 
 for i in range(5, 0, -1):
         printAll(''.join(alphabet), i)
-
