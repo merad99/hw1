@@ -1,22 +1,20 @@
 import sys
-dfa = {0:{'0':0, '1':1},
-       1:{'0':2, '1':1},
-       2:{'0':1, '1':1}}
+dfa = {0:{'0':1, '1':1},
+       1:{'0':2, '1':2},
+       2:{'0':3, '1':3},
+       3:{'0':3, '1':3}}
 
 def accepts(transitions,initial,accepting,s):
     state = initial
-    if len(s)>2:
-        for c in s:
-            state = transitions[state][c]
-        if (state in accepting) == True:
-            print('accept')
-        else:
-            print('reject')
+    for c in s:
+        state = transitions[state][c]
+    if (state in accepting) == True:
+        print('accept')
     else:
-        print('reject') 
+        print('reject')
 try:
     inp = sys.stdin.readline()
-    accepts(dfa,0,{1},inp.replace(" ", ""))
+    accepts(dfa,0,{3},inp.replace(" ", ""))
 except:
     pass
 

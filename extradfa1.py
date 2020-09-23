@@ -1,13 +1,15 @@
 import xml.etree.ElementTree as ET
+from xml.dom import minidom
 
-transition_function = {0:{'0':0, '1':1},
-                       1:{'0':2, '1':1},
-                       2:{'0':1, '1':1}}
+transition_function = {0:{'0':1, '1':3},
+                       1:{'1':0, '1':2},
+                       2:{'1':1, '0':3},
+                       3:{'1':2, '1':0}}
 
-states=set(["0", "1", "2"])
+states=set(["0", "1", "2", "3"])
 alphabet=set(["0","1"])
 start_state = 0
-accept_state=set(["1"])
+accept_state=set(["0"])
 
 dfa = (states, alphabet, transition_function, start_state, accept_state)
 
@@ -19,7 +21,7 @@ def GenerateXML(fileName) :
         state = ET.Element("state") 
         root.append(state)
         state.set('id', i)
-        #state.set('name', str(dfa[3]))
+        state.set('name', i)
         if (start_state == int(i)):{
             ET.SubElement(state, "initial")
         }
@@ -38,10 +40,11 @@ def GenerateXML(fileName) :
             Read = ET.SubElement(transition, "read") 
             Read.text = str(k)
     
-    tree = ET.ElementTree(root) 
-      
+    rough_string = ET.tostring(root, 'utf-8')
+    reparsed = minidom.parseString(rough_string)
+
     with open (fileName, "wb") as files : 
-        tree.write(files) 
+        files.write(reparsed.toprettyxml(indent="  ").encode())
   
 if __name__ == "__main__":  
-    GenerateXML("dfa.xml")
+    GenerateXML("extradfa1.xml")

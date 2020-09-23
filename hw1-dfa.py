@@ -1,8 +1,9 @@
-import string 
-import random
 import xml.etree.ElementTree as ET
 
-inp = input()
+try:
+    inp = input()
+except:
+    pass
 
 tree = ET.parse(inp)
 root = tree.getroot()
@@ -14,7 +15,6 @@ accept_state=set()
 From=list()
 To=list()
 Read=list()
-
 
 for state in root.iter('state'):
     states.add(state.get('id'))
@@ -66,3 +66,5 @@ def printAllRec(set, prefix, n, k):
 
 for i in range(5, 0, -1):
         printAll(''.join(alphabet), i)
+if int(q0) in accept_state:
+    print()

@@ -1,40 +1,40 @@
 <?xml version="1.0" ?>
 <automaton>
-  <state id="1" name="1">
+  <state id="1" name="1"/>
+  <state id="0" name="0">
+    <initial/>
     <final/>
   </state>
   <state id="2" name="2"/>
-  <state id="0" name="0">
-    <initial/>
-  </state>
+  <state id="3" name="3"/>
   <transition>
     <from>0</from>
-    <to>0</to>
+    <to>1</to>
     <read>0</read>
   </transition>
   <transition>
     <from>0</from>
-    <to>1</to>
+    <to>3</to>
     <read>1</read>
   </transition>
   <transition>
     <from>1</from>
     <to>2</to>
-    <read>0</read>
-  </transition>
-  <transition>
-    <from>1</from>
-    <to>1</to>
     <read>1</read>
   </transition>
   <transition>
     <from>2</from>
     <to>1</to>
-    <read>0</read>
+    <read>1</read>
   </transition>
   <transition>
     <from>2</from>
-    <to>1</to>
+    <to>3</to>
+    <read>0</read>
+  </transition>
+  <transition>
+    <from>3</from>
+    <to>0</to>
     <read>1</read>
   </transition>
 </automaton>

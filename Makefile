@@ -1,7 +1,9 @@
 setup:
 	apt install python3.8
 run-hw1-dfa: 
-	python3 hw1-dfa.py	
+	python3 hw1-dfa.py
+run-hw1-dfa2: 
+	python3 hw1-dfa2.py	
 run-hw1-regular:
 	python3 hw1-regular.py
 run-hw1-union:
